@@ -5,7 +5,7 @@ const cors = require('cors')
 
 app.use(cors())
 
-let info = [
+const info = [
     {
         id: 1,
         title:'Outdoor yoga class',
@@ -74,23 +74,38 @@ let info = [
     }
 ]
 
+const getItemByTitle = (title) => info.filter(item => item.title.includes(title))
+
 app.get('/api/info', (request, response) => {
-    response.json(info)
+    const {title} = request.query
+
+    let result = info
+
+    if (title) {
+        info = getItemByTitle(title)
+    }
+
+    if (!info.length) {
+        response.status(404).end()
+    }
+
+    return response.json(result)
 })
 
 app.get('/api/info/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const item = info.find(item=>item.id ===id)
+    const id = +request.params.id
+    const item = info.find((item) => item.id ===id)
 
-    if(item){
+    if (item) {
         response.json(item)
-    }else{
+    } else {
         response.status(404).end()
     }
 
 })
 
 const PORT = process.env.PORT || 3001
+
 app.listen(PORT,() => {
     console.log(`Server running on port ${PORT}`)
 })
