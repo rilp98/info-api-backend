@@ -5,7 +5,7 @@ const cors = require('cors')
 
 app.use(cors())
 
-let info = [
+const info = [
     {
         id: 1,
         title:'Outdoor yoga class',
@@ -74,40 +74,38 @@ let info = [
     }
 ]
 
+const getItemsByTitle = (title) => info.filter(item => item.title.toLowerCase().includes(title.toLowerCase()))
+
 app.get('/api/info', (request, response) => {
-    response.json(info)
-})
+    const {title} = request.query
 
-app.get('/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const item = info.find(item=>item.id ===id)
+    let result = info
 
-    if(id===0){
-       response.json(info)
+    if (title) {
+        result = getItemsByTitle(title)
     }
 
-    if(item){
+    if (!info.length) {
+        response.status(404).end()
+    }
+
+    return response.json(result)
+})
+
+app.get('/api/info/:id', (request, response) => {
+    const id = +request.params.id
+    const item = info.find((item) => item.id === id)
+
+    if (item) {
         response.json(item)
-    }else{
+    } else {
         response.status(404).end()
     }
 
 })
 
-app.use('/', (req, res) => {
-    const filters = req.query; // Lista de parametros de consulta luego de ? en la URL
-    const filteredDatas = info.filter(data => {  
-      let isValid = true;     // Variable de control
-      for (key in filters) { // Vamos a recorrer la lista de parametros
-        console.log(key, data[key], filters[key]);              
-        isValid = isValid && data[key] == filters[key];
-      }
-      return isValid;
-    });
-    res.send(filteredDatas);
-});
-
 const PORT = process.env.PORT || 3001
+
 app.listen(PORT,() => {
     console.log(`Server running on port ${PORT}`)
 })
