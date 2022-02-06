@@ -74,7 +74,7 @@ const info = [
     }
 ]
 
-const getItemByTitle = (title) => info.filter(item => item.title.includes(title))
+const getItemByTitle = (title) => info.filter(item => item.title.toLowerCase().includes(title.toLowerCase()))
 
 app.get('/api/info', (request, response) => {
     const {title} = request.query
@@ -82,7 +82,7 @@ app.get('/api/info', (request, response) => {
     let result = info
 
     if (title) {
-        info = getItemByTitle(title)
+        result = getItemByTitle(title)
     }
 
     if (!info.length) {
