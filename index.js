@@ -78,9 +78,13 @@ app.get('/api/info', (request, response) => {
     response.json(info)
 })
 
-app.get('/api/info/:id', (request, response) => {
+app.get('/:id', (request, response) => {
     const id = Number(request.params.id)
     const item = info.find(item=>item.id ===id)
+
+    if(id===0){
+       response.json(info)
+    }
 
     if(item){
         response.json(item)
@@ -89,6 +93,19 @@ app.get('/api/info/:id', (request, response) => {
     }
 
 })
+
+app.use('/', (req, res) => {
+    const filters = req.query; // Lista de parametros de consulta luego de ? en la URL
+    const filteredDatas = info.filter(data => {  
+      let isValid = true;     // Variable de control
+      for (key in filters) { // Vamos a recorrer la lista de parametros
+        console.log(key, data[key], filters[key]);              
+        isValid = isValid && data[key] == filters[key];
+      }
+      return isValid;
+    });
+    res.send(filteredDatas);
+});
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT,() => {
