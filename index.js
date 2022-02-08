@@ -32,7 +32,7 @@ const info = [
         id: 3,
         title:'Learn to cook new and interesting recipes',
         alt:'Learn to cook activity',
-        description:'Learn interesting recipes of Mediterranean cuisine..',
+        description:'Learn interesting recipes of Mediterranean cuisine.',
         price: '$40',
         images: [
             'https://res.cloudinary.com/dpdlublfz/image/upload/v1643210879/CodeCademy/Mobile/Cook-Mobile_sysxbz.png',
