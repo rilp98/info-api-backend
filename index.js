@@ -21,7 +21,7 @@ const info = [
         id: 2,
         title:'Make your candles activity',
         alt:'Make your candles',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Learn and create your own personalized candles.',
         price: '$35',
         images: [
             'https://res.cloudinary.com/dpdlublfz/image/upload/v1643210879/CodeCademy/Mobile/Candle-Mobile_ty0ud7.png',
@@ -32,7 +32,7 @@ const info = [
         id: 3,
         title:'Learn to cook new and interesting recipes',
         alt:'Learn to cook activity',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Learn interesting recipes of Mediterranean cuisine..',
         price: '$40',
         images: [
             'https://res.cloudinary.com/dpdlublfz/image/upload/v1643210879/CodeCademy/Mobile/Cook-Mobile_sysxbz.png',
@@ -43,7 +43,7 @@ const info = [
         id: 4,
         title:'Expedition the Santo Angel with us',
         alt:'Expedition on the Santo Angel',
-        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Take a 3-day guided trip to Santo Angel with us.',
         price: '$15',
         images: [
             'https://res.cloudinary.com/dpdlublfz/image/upload/v1643210888/CodeCademy/Mobile/Expedition-Mobile_tmwhuo.png',
